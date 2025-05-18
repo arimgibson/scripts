@@ -1,5 +1,5 @@
-import { UnipileClient } from "unipile-node-sdk";
 import { phone } from "phone";
+import { UnipileClient } from "unipile-node-sdk";
 
 type OutputItem = {
 	fullName: string | null;
@@ -91,5 +91,7 @@ function formatPhoneNumber(phoneNumber: string): string | null {
 		return null;
 	}
 
-	return parsingRes.phoneNumber.replace(/^\+1/, '').replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
+	return parsingRes.phoneNumber
+		.replace(/^\+1/, "")
+		.replace(/(\d{3})(\d{3})(\d{4})/, "($1) $2-$3");
 }
