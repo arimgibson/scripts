@@ -1,3 +1,52 @@
+/**
+ * LinkedIn Recruiter Contact Scraping Tool
+ * ========================================
+ *
+ * This script extracts contact information from LinkedIn profiles using the Unipile API.
+ * It processes a list of LinkedIn URLs and extracts key information including names, emails,
+ * phone numbers, and current company roles. Originally written to catalog network of recruiters.
+ *
+ * HOW TO USE:
+ * ===========
+ *
+ * 1. SETUP ENVIRONMENT VARIABLES:
+ *    - Set UNIPILE_DSN (your Unipile data source name)
+ *    - Set UNIPILE_API_KEY (your Unipile API key)
+ *    - Set UNIPILE_ACCOUNT_ID (your Unipile account identifier)
+ *
+ * 2. PREPARE INPUT DATA:
+ *    - Create a JSON file at `private-data/inputs/recruiterContactScraping.json`
+ *    - Add LinkedIn profile URLs as an array of strings
+ *    - Example: ["https://www.linkedin.com/in/username1", "https://www.linkedin.com/in/username2"]
+ *
+ * 3. RUN THE SCRIPT:
+ *    - Run: bun run src/recruiterContactScraping.ts
+ *
+ * WHAT THE SCRIPT DOES:
+ * ====================
+ *
+ * - Reads LinkedIn profile URLs from the input JSON file
+ * - Fetches profile data using the Unipile LinkedIn API
+ * - Extracts and formats the following information:
+ *   - Full name (first + last name)
+ *   - LinkedIn profile URL
+ *   - Email addresses (normalized to lowercase)
+ *   - Phone numbers (formatted to US standard format)
+ *   - Current company and role
+ * - Saves results to a timestamped JSON file in the outputs directory
+ * - Includes rate limiting (5-6 second delays between requests)
+ *
+ * OUTPUT STRUCTURE:
+ * ================
+ *
+ * Each output record contains:
+ * - fullName: Combined first and last name, or null if unavailable
+ * - profileUrl: LinkedIn profile URL
+ * - emails: Array of email addresses (lowercase)
+ * - phones: Array of formatted phone numbers
+ * - currentCompanyRole: Company name and position, or null if unavailable
+ */
+
 import { phone } from "phone";
 import { UnipileClient } from "unipile-node-sdk";
 
