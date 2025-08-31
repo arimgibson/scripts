@@ -74,7 +74,7 @@ const orderedProperties = [
 	"userEditedTimestampUsec",
 ];
 const noteInputDir = "/home/ari/downloads/Keep";
-const noteOutputDir = "./notes";
+const noteOutputDir = `./private-data/outputs/parseGoogleKeepExportToMd-${Date.now()}`;
 // #endregion
 
 // Setting an "AnyType" to biome-ignore once instead of every line that could potentially be an AnyType
